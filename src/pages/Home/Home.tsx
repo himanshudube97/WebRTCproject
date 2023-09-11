@@ -1,19 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
 import { Card } from "../../components/shared/Card/Card";
-import {Button} from "../../components/shared/Button/Button";
+import { Button } from "../../components/shared/Button/Button";
+
 export const Home = () => {
-  const handleclick = ()=>{
-    alert("something will happen")
-  }
-  const signInLinkStyle ={
+  const navigate = useNavigate();
+  const handleRegister = () => {
+    navigate("/register");
+  };
+  const signInLinkStyle = {
     color: "#0077ff",
     fontWeight: "bold",
     textDecoration: "none",
     marginLeft: "10px",
-
-  }
+  };
   return (
     <div className={styles.cardWrapper}>
       <Card title="Welcome to Coderhouse!!!" icon="logo">
@@ -23,12 +24,13 @@ export const Home = () => {
           nostrum iusto distinctio!
         </p>
         <div>
-        
-          <Button text="Get Your Username" onClick={handleclick}></Button>
+          <Button text="Get Your Username" onClick={handleRegister}></Button>
         </div>
         <div className={styles.signinWrapper}>
           <span className={styles.hasInvite}>Have an invite text?</span>
-          <Link style={signInLinkStyle} to="/Login">Sign In</Link>
+          <Link style={signInLinkStyle} to="/Login">
+            Sign In
+          </Link>
         </div>
       </Card>
     </div>
