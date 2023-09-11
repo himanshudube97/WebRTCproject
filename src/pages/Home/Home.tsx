@@ -1,27 +1,36 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import styles from "./Home.module.css";
+import { Card } from "../../components/shared/Card/Card";
+import {Button} from "../../components/shared/Button/Button";
 export const Home = () => {
+  const handleclick = ()=>{
+    alert("something will happen")
+  }
+  const signInLinkStyle ={
+    color: "#0077ff",
+    fontWeight: "bold",
+    textDecoration: "none",
+    marginLeft: "10px",
+
+  }
   return (
-    <div className="card">
-      <div className="headingwrapper">
-        <img src="/images/wave.png" width={50} alt="" />
-        <h1>Welcome to CodersHouse</h1>
-      </div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis
-        libero magni labore consequuntur officia perspiciatis similique nemo
-        nostrum iusto distinctio!
-      </p>
-      <div>
-        <button>
-          <span>Get your username</span>
-          <img src="/images/arrow.png" width={50} alt="image" />
-        </button>
-      </div>
-      <div>
-        <span>Have an invite text?</span>
-        <Link to="/Login">Sign In</Link>
-      </div>
+    <div className={styles.cardWrapper}>
+      <Card title="Welcome to Coderhouse!!!" icon="logo">
+        <p className={styles.text}>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis
+          libero magni labore consequuntur officia perspiciatis similique nemo
+          nostrum iusto distinctio!
+        </p>
+        <div>
+        
+          <Button text="Get Your Username" onClick={handleclick}></Button>
+        </div>
+        <div className={styles.signinWrapper}>
+          <span className={styles.hasInvite}>Have an invite text?</span>
+          <Link style={signInLinkStyle} to="/Login">Sign In</Link>
+        </div>
+      </Card>
     </div>
   );
 };
