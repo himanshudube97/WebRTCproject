@@ -1,0 +1,10 @@
+import React from 'react'
+
+export const Email = () => {
+  return (
+    <>
+    <div>Email</div>
+    {/* <button onClick={onNext}>Next</button> */}
+    </>
+  )
+}

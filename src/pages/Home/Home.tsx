@@ -7,7 +7,7 @@ import { Button } from "../../components/shared/Button/Button";
 export const Home = () => {
   const navigate = useNavigate();
   const handleRegister = () => {
-    navigate("/register");
+    navigate("/authenticate");
   };
   const signInLinkStyle = {
     color: "#0077ff",
@@ -24,13 +24,11 @@ export const Home = () => {
           nostrum iusto distinctio!
         </p>
         <div>
-          <Button text="Get Your Username" onClick={handleRegister}></Button>
+          <Button text="Lets Go!" onClick={handleRegister}></Button>
         </div>
         <div className={styles.signinWrapper}>
           <span className={styles.hasInvite}>Have an invite text?</span>
-          <Link style={signInLinkStyle} to="/Login">
-            Sign In
-          </Link>
+       
         </div>
       </Card>
     </div>
