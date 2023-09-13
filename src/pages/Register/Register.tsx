@@ -1,26 +1,31 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from "react";
 import styles from "./Register.module.css";
-import { StepPhoneEmail } from '../Steps/StepPhoneEmail/StepPhoneEmail';
-import { StepOtp } from '../Steps/StepOtp/StepOtp';
-import { StepName } from '../Steps/StepName/StepName';
-import { StepAvatar } from '../Steps/StepAvatar/StepAvatar';
-import { StepUserName } from '../Steps/StepUsername/StepUserName';
+import { StepPhoneEmail } from "../Steps/StepPhoneEmail/StepPhoneEmail";
+import { StepOtp } from "../Steps/StepOtp/StepOtp";
+import { StepName } from "../Steps/StepName/StepName";
+import { StepAvatar } from "../Steps/StepAvatar/StepAvatar";
+import { StepUserName } from "../Steps/StepUsername/StepUserName";
 
-const steps: {[key: number]: ()=>JSX.Element} = {
+const steps: { [key: number]: (props: { onNext: () => void }) => JSX.Element } =
+  {
     1: StepPhoneEmail,
     2: StepOtp,
     3: StepName,
     4: StepAvatar,
-    5: StepUserName
-}
-
+    5: StepUserName,
+  };
 
 export const Register = () => {
-    const [step, setStep] = useState(1);
-    const Step = steps[step];
+  const [step, setStep] = useState(1);
+
+  const Step = steps[step];
+
+  const onNext = () => {
+    setStep(step + 1);
+  };
   return (
     <div>
-        <Step/>
+      <Step onNext={onNext} />
     </div>
-  )
-}
+  );
+};

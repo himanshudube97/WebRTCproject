@@ -1,10 +1,10 @@
 import React from 'react'
 
-export const StepPhoneEmail = () => {
+export const StepPhoneEmail = ({onNext}: any) => {
   return (
     <>
     <div>StepPhoneEmail</div>
-    <button>Next</button>
+    <button onClick={onNext}>Next</button>
     </>
   )
 }
