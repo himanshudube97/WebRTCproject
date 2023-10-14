@@ -70,7 +70,7 @@ const SemiProtectedRoute = ({children }: SpecialRoutes) => {
 
   return !isAuth ? (
     <Navigate to="/" />
-  ) : isAuth && user.activated ? (
+  ) : isAuth && user.isActivated ? (
     <Navigate to="/rooms" />
   ) : (
     children
@@ -82,7 +82,7 @@ const ProtectedRoute = ({ children }: SpecialRoutes) => {
 
   return !isAuth ? (
     <Navigate to="/" />
-  ) : isAuth && !user.activated ? (
+  ) : isAuth && !user.isActivated ? (
     <Navigate to="/activate" />
   ) : (
     children
