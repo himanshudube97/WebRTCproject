@@ -6,17 +6,15 @@ import { Navigation } from "./components/shared/Navigation/Navigation";
 import { Authenticate } from "./pages/Authenticate/Authenticate";
 import { Activate } from "./pages/Activate/Activate";
 import { Rooms } from "./pages/Rooms/Rooms";
-
+import { useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 interface SpecialRoutes {
-  authenticated: boolean;
+
   children: any;
 }
 
-const user = {
-  activated: false,
-};
 
-const isAuth = false; //logged in condition;
+
 function App() {
   return (
     <>
@@ -26,7 +24,7 @@ function App() {
           <Route
             path="/"
             element={
-              <GuestRoute authenticated={isAuth}>
+              <GuestRoute >
                 <Home />
               </GuestRoute>
             }
@@ -34,7 +32,7 @@ function App() {
           <Route
             path="/authenticate"
             element={
-              <GuestRoute authenticated={isAuth}>
+              <GuestRoute >
                 <Authenticate />
               </GuestRoute>
             }
@@ -42,7 +40,7 @@ function App() {
           <Route
             path="/activate"
             element={
-              <SemiProtectedRoute authenticated={isAuth}>
+              <SemiProtectedRoute >
                 <Activate />
               </SemiProtectedRoute>
             }
@@ -50,7 +48,7 @@ function App() {
           <Route
             path="/rooms"
             element={
-              <ProtectedRoute authenticated={isAuth}>
+              <ProtectedRoute>
                 <Rooms />
               </ProtectedRoute>
             }
@@ -61,25 +59,30 @@ function App() {
   );
 }
 
-const GuestRoute = ({ authenticated, children }: SpecialRoutes) => {
-  return authenticated ? <Navigate to="/rooms" /> : children;
+const GuestRoute = ({children }: SpecialRoutes) => {
+const {isAuth} = useSelector((state:any) => state.auth);
+  return isAuth ? <Navigate to="/rooms" /> : children;
 };
 export default App;
 
-const SemiProtectedRoute = ({ authenticated, children }: SpecialRoutes) => {
-  return !authenticated ? (
+const SemiProtectedRoute = ({children }: SpecialRoutes) => {
+  const {isAuth, user} = useSelector((state:any) => state.auth);
+
+  return !isAuth ? (
     <Navigate to="/" />
-  ) : authenticated && user.activated ? (
+  ) : isAuth && user.activated ? (
     <Navigate to="/rooms" />
   ) : (
     children
   );
 };
 
-const ProtectedRoute = ({ authenticated, children }: SpecialRoutes) => {
-  return !authenticated ? (
+const ProtectedRoute = ({ children }: SpecialRoutes) => {
+  const {isAuth, user} = useSelector((state:any) => state.auth);
+
+  return !isAuth ? (
     <Navigate to="/" />
-  ) : authenticated && !user.activated ? (
+  ) : isAuth && !user.activated ? (
     <Navigate to="/activate" />
   ) : (
     children
