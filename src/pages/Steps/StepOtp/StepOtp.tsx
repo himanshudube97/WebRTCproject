@@ -18,11 +18,10 @@ export const StepOtp = ({ onNext }: any) => {
     try {
       const { data } = await verifyOtp({ otp, phone: phone, hash: hash });
       console.log(data, "data");
-      const accessToken = data.accessToken;
-      const user = data.newUser;
-      console.log(user, "user");
-      dispatch(setAuth(user));
-      localStorage.setItem("token", accessToken);
+
+   
+      dispatch(setAuth(data));
+
     } catch (error) {
       console.log(error, "error");
     }

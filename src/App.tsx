@@ -1,4 +1,4 @@
-import React from "react";
+import {useState} from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
@@ -8,15 +8,20 @@ import { Activate } from "./pages/Activate/Activate";
 import { Rooms } from "./pages/Rooms/Rooms";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import useLoadingWithRefresh from "./hooks/useLoadingWithRefresh";
+import Loader from "./components/shared/Loader/Loader";
 interface SpecialRoutes {
 
   children: any;
 }
 
-
+// const loading = false;
 
 function App() {
+const {loading} = useLoadingWithRefresh();
+
   return (
+    loading?<Loader message="Loading, Please wait..." />:
     <>
       <BrowserRouter>
         <Navigation />

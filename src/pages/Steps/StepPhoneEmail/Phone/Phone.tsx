@@ -12,12 +12,16 @@ export const Phone = ({ onNext }: any) => {
   const dispatch = useDispatch();
   const onSubmit = async () => {
     //server request
-    const { data } = await sendOtp({ phone: `+91${phoneNumber}` });
-    console.log(data, "res");
-    //after receiving the data from api, we are storing it to our global state.
-    dispatch(setOtp({ phone: data.phone, hash: data.hash }));
-    onNext();
-  };
+    try {
+      const { data } = await sendOtp({ phone: `+91${phoneNumber}` });
+      console.log(data, "res");
+      //after receiving the data from api, we are storing it to our global state.
+      dispatch(setOtp({ phone: data.phone, hash: data.hash }));
+      onNext();
+    } catch (error) {
+      console.log(error, "error");
+    }
+  }; 
   return (
     <>
       <Card title="Enter Your Phone Number" icon="logo">
