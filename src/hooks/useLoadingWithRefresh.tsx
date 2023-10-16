@@ -15,18 +15,18 @@ function useLoadingWithRefresh() {
             withCredentials: true,
           }
         );
-        console.log(data, "DATA%%%")
+        console.log(data, "DATA%%%");
         dispatch(setAuth(data));
-        setLoading(false);
 
         console.log(data);
       } catch (error) {
         console.log(error);
+      } finally {
         setLoading(false);
       }
     })();
   }, []);
-  return {loading};
+  return { loading };
 }
 
 export default useLoadingWithRefresh;

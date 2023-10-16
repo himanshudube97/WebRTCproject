@@ -5,7 +5,7 @@ import { Home } from "./pages/Home/Home";
 import { Navigation } from "./components/shared/Navigation/Navigation";
 import { Authenticate } from "./pages/Authenticate/Authenticate";
 import { Activate } from "./pages/Activate/Activate";
-import { Rooms } from "./pages/Rooms/Rooms";
+import  Rooms  from "./pages/Rooms/Rooms";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useLoadingWithRefresh from "./hooks/useLoadingWithRefresh";

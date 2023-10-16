@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "../../../components/shared/Card/Card";
 import { Button } from "../../../components/shared/Button/Button";
 import styles from "./StepAvatar.module.css";
@@ -14,6 +14,7 @@ export const StepAvatar = ({ onNext }: any) => {
   });
   const [image, setImage] = useState("/images/bro.png");
   const [loading, setLoading] = useState(false);
+  // const [mount, setMount] = useState(false);
 
   const onSelectImage = (e: any) => {
     const file = e.target.files[0]; //image is in file format, we need to covert it inot base 64 string and then send.
@@ -31,7 +32,8 @@ export const StepAvatar = ({ onNext }: any) => {
       const { data } = await activate({ name, image });
       console.log(data, "data");
       if (data.auth) {
-        dispatch(setAuth(data));
+        // mount ? dispatch(setAuth(data)) : "";
+        dispatch(setAuth(data))
       }
       // setLoading(false);
     } catch (error) {
@@ -41,6 +43,12 @@ export const StepAvatar = ({ onNext }: any) => {
       setLoading(false);
     }
   };
+
+  // useEffect(() => {
+  //   return () => {
+  //     setMount(true);
+  //   };
+  // }, []);
   if (loading) return <Loader message="Activation in progress..." />;
   return (
     <>
