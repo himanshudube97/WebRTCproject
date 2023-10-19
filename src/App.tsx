@@ -10,6 +10,7 @@ import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useLoadingWithRefresh from "./hooks/useLoadingWithRefresh";
 import Loader from "./components/shared/Loader/Loader";
+import { Room } from "./pages/Room/Room";
 interface SpecialRoutes {
 
   children: any;
@@ -55,6 +56,14 @@ const {loading} = useLoadingWithRefresh();
             element={
               <ProtectedRoute>
                 <Rooms />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/room/:id"
+            element={
+              <ProtectedRoute>
+                <Room/>
               </ProtectedRoute>
             }
           />

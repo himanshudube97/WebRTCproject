@@ -10,9 +10,9 @@ const RoomCard = ({ room }:any) => {
     const navigate = useNavigate();
     return (
         <div
-            // onClick={() => {
-            //     history.push(`/room/${room.id}`);
-            // }}
+            onClick={() => {
+                navigate(`/room/${room.id}`);
+            }}
             className={styles.card}
         >
             <h3 className={styles.topic}>{room.topic}</h3>

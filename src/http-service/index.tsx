@@ -14,6 +14,9 @@ export const sendOtp = (data: object) => api.post("/api/send-otp", data);
 export const verifyOtp = (data: object) => api.post("/api/verify-otp", data);
 export const activate = (data: object) => api.post("/api/activate", data);
 export const logout = () => api.post("/api/logout");
+export const createRoom = (data:object)=> api.post("/api/rooms", data);
+export const getAllRooms = ()=> api.get("/api/rooms");
+export const getSingleRoom = (id:string)=>api.get(`/api/rooms/${id}`);
 //interceptors
 /**
  * The sit bw every req and resp in frontend
