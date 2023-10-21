@@ -87,6 +87,8 @@ const Rooms = () => {
             setRooms(data);
         };
         fetchRooms();
+        console.log("BROTHER")
+
     }, []);
     function openModal() {
         setShowModal(true);

@@ -7,6 +7,7 @@ function useLoadingWithRefresh() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
+
     (async () => {
       try {
         const { data } = await axios.get(
@@ -24,6 +25,7 @@ function useLoadingWithRefresh() {
       } finally {
         setLoading(false);
       }
+      console.log("BROTHER")
     })();
   }, []);
   return { loading };
